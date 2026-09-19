@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#6957ff">
+<meta name="description" content="TileFusion — an original strategic tile matching adventure.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icons/icon.svg">
+<link rel="stylesheet" href="css/style.css">
+<title>TileFusion</title>
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <button id="brandBtn" class="brand" aria-label="Home"><span class="brandmark">✦</span><span>Tile<span>Fusion</span></span></button>
+    <div class="top-actions">
+      <div class="wallet"><span>🪙</span><b id="coins">0</b></div>
+      <button id="soundBtn" class="icon-btn" aria-label="Sound">🔊</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="homeScreen" class="screen active">
+      <div class="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">A NEW KIND OF TILE PUZZLE</p>
+          <h1>Match. <em>Combo.</em><br>Master.</h1>
+          <p>Clear layered boards, build streaks and use clever tools before the tray fills.</p>
+          <button id="playBtn" class="primary big">▶ Play Level <span id="playLevel">1</span></button>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="float-tile t1">🍓</div><div class="float-tile t2">⚽</div>
+          <div class="float-tile t3">🏆</div><div class="float-tile t4">🍋</div>
+          <div class="hero-orb">✦</div>
+        </div>
+      </div>
+      <div class="section-head"><h2>Quick Play</h2><button id="seeAllThemes">All themes →</button></div>
+      <div id="themeCards" class="theme-grid"></div>
+      <div class="home-panels">
+        <button id="dailyBtn" class="feature-card"><span>📅</span><div><b>Daily Challenge</b><small>Fresh board every day</small></div><i>›</i></button>
+        <button id="achBtn" class="feature-card"><span>🏅</span><div><b>Achievements</b><small id="achievementMini">0 unlocked</small></div><i>›</i></button>
+      </div>
+    </section>
+
+    <section id="levelsScreen" class="screen">
+      <div class="page-title"><div><p class="eyebrow">ADVENTURE</p><h1>Level Map</h1></div><div class="progress-pill"><span id="levelProgress">1 / 120</span></div></div>
+      <div id="levelMap" class="level-map"></div>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen">
+      <div class="game-head">
+        <button id="exitGame" class="icon-btn">✕</button>
+        <div class="game-title"><b>LEVEL <span id="gameLevel">1</span></b><small id="themeName">Emoji Garden</small></div>
+        <div class="game-stats"><span>⭐ <b id="gameStars">0</b></span><span>🔥 <b id="combo">0</b></span><span>⏱ <b id="timer">0</b></span></div>
+      </div>
+      <div class="score-row"><span>SCORE <b id="score">0</b></span><div class="progress"><i id="boardProgress"></i></div><span><b id="remaining">0</b> left</span></div>
+      <div id="boardWrap" class="board-wrap"><canvas id="board"></canvas><div id="hintGlow"></div></div>
+      <div class="tray-label"><span>TRAY</span><b id="trayCount">0 / 7</b></div>
+      <div id="tray" class="tray"></div>
+      <div class="tools">
+        <button class="tool" data-tool="undo"><span>↶</span><b>Undo</b><small>3</small></button>
+        <button class="tool" data-tool="hint"><span>💡</span><b>Hint</b><small>∞</small></button>
+        <button class="tool" data-tool="shuffle"><span>🔀</span><b>Shuffle</b><small>2</small></button>
+        <button class="tool" data-tool="wild"><span>🃏</span><b>Wild</b><small>1</small></button>
+      </div>
+    </section>
+
+    <section id="resultScreen" class="screen result-screen">
+      <div class="result-card">
+        <div id="resultIcon" class="result-icon">🏆</div>
+        <p class="eyebrow" id="resultKicker">LEVEL COMPLETE</p>
+        <h1 id="resultTitle">Brilliant!</h1>
+        <p id="resultText">The board is clear.</p>
+        <div class="star-line" id="resultStars">☆☆☆</div>
+        <div class="result-stats">
+          <div><small>SCORE</small><b id="resultScore">0</b></div>
+          <div><small>COMBO</small><b id="resultCombo">0</b></div>
+          <div><small>TIME</small><b id="resultTime">0s</b></div>
+        </div>
+        <div class="reward">+ <b id="resultCoins">0</b> 🪙</div>
+        <button id="nextBtn" class="primary big">Next Level →</button>
+        <button id="levelsFromResult" class="ghost">Level Map</button>
+      </div>
+    </section>
+
+    <section id="themesScreen" class="screen">
+      <div class="page-title"><div><p class="eyebrow">COLLECTION</p><h1>Theme Packs</h1></div></div>
+      <div id="themeList" class="theme-list"></div>
+      <div class="notice">More original theme packs can be added without changing the game engine.</div>
+    </section>
+
+    <section id="settingsScreen" class="screen">
+      <div class="page-title"><div><p class="eyebrow">PREFERENCES</p><h1>Settings</h1></div></div>
+      <div class="settings-list">
+        <button class="setting" id="soundSetting"><span>🔊</span><div><b>Sound effects</b><small>Tap and combo sounds</small></div><i class="toggle on"></i></button>
+        <button class="setting" id="musicSetting"><span>🎵</span><div><b>Music</b><small>Ambient game music</small></div><i class="toggle"></i></button>
+        <button class="setting" id="resetSetting"><span>♻️</span><div><b>Reset progress</b><small>Start the adventure again</small></div><i>›</i></button>
+      </div>
+      <div class="about-card"><b>TileFusion</b><p>Original HTML, CSS and JavaScript game engine. Built for responsive web and PWA packaging.</p><small>v2.0 • Offline-ready</small></div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button data-nav="homeScreen" class="active"><span>⌂</span>Home</button>
+    <button data-nav="levelsScreen"><span>▦</span>Levels</button>
+    <button data-nav="themesScreen"><span>✦</span>Themes</button>
+    <button data-nav="settingsScreen"><span>⚙</span>Settings</button>
+  </nav>
+
+  <div id="modal" class="modal"><div class="modal-card"><button id="closeModal" class="modal-close">✕</button><div id="modalContent"></div></div></div>
+  <div id="toast" class="toast"></div>
+</div>
+<script src="js/content.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
